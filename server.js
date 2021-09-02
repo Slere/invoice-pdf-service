@@ -36,15 +36,15 @@ app.post('/',jsonParser,(req,res) => {
     }
     pdf
   .create(document, options)
-  .then((res) => {
-    console.log(res);
+  .then((resp) => {
+    console.log(resp);
+    const pdf_return = fs.readFileSync(__dirname+"/test/output.pdf");
+    res.send(pdf_return);
   })
   .catch((error) => {
     console.error(error);
   });
-  const pdf_return = fs.readFileSync(__dirname+"/test/output.pdf");
   
-  res.send(pdf_return);
   
 })
 app.listen(3000, () => console.log('app is listening on port 3000.'));
